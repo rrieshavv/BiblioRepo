@@ -1,0 +1,60 @@
+# Visual Studio files
+.vs/
+*.vspscc
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider files
+.idea/
+*.sln.iml
+
+# Compiled files
+bin/
+obj/
+
+# Node.js
+node_modules/
+
+# Package directories
+packages/
+
+# .NET Core
+*.Cache
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.json
+*.junit
+*.nupkg
+*.runtimeconfig.json
+*.csproj.user
+*.publishsettings
+*.pubxml
+*.appsettings
+*.appsettings.Development
+*.appsettings.Production
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Thumbnails
+._*
+
+# Logs
+*.log
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+
+# Patch files
+*.swp
+*.swo
+*.orig
