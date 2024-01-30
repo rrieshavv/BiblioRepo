@@ -1,5 +1,5 @@
-Add appsettings.json file to the project .Web directory
-{
+#### Add appsettings.json file to the project .Web directory
+```{
   "Logging": {
     "LogLevel": {
       "Default": "Information",
@@ -10,4 +10,4 @@ Add appsettings.json file to the project .Web directory
   "ConnectionStrings": {
     "MySQL_Server": "your_server_connection_string"
   }
-}
+}```
