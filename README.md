@@ -10,4 +10,5 @@
   "ConnectionStrings": {
     "MySQL_Server": "your_server_connection_string"
   }
-}```
+}
+```
