@@ -1,5 +1,7 @@
+using BiblioRepo.Web.Data;
 using BiblioRepo.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BiblioRepo.Web.Controllers
@@ -7,15 +9,18 @@ namespace BiblioRepo.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppDbContext db)
         {
             _logger = logger;
+            this.db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await db.Products.ToListAsync();
+            return View(products);
         }
 
         public IActionResult Privacy()

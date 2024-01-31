@@ -46,6 +46,7 @@ namespace BiblioRepo.Web.Controllers
                 };
                 return View(detail);
             }
+            TempData["error"] = "Product not found!";
             return RedirectToAction("Index", "Product");
         }
 
@@ -65,6 +66,7 @@ namespace BiblioRepo.Web.Controllers
             if(status is not null)
             {
                 //same product existing 
+                TempData["error"] = "Product with same name already exists.";
                 return View();
             }
 
@@ -98,9 +100,11 @@ namespace BiblioRepo.Web.Controllers
                 };
                 await db.Products.AddAsync(product);
                 await db.SaveChangesAsync();
+                TempData["success"] = "Product created successfully";
                 return RedirectToAction("Detail", "Product", new { Id = obj.Id });
             }
-            return View();
+            TempData["error"] = "Can't process image. Try again.";
+            return View(obj);
         }
 
 
@@ -152,10 +156,11 @@ namespace BiblioRepo.Web.Controllers
                     product.ImageUrl = @"\images\product\" + fileName;
                 }
                 await db.SaveChangesAsync();
+                TempData["success"] = "Product updated successfully";
                 return RedirectToAction("Detail","Product", new { Id = obj.Id });
             }
+            TempData["error"] = "Product not found.";
             return View(obj);
-
         }
 
         [HttpPost]
@@ -166,6 +171,7 @@ namespace BiblioRepo.Web.Controllers
 
             if (product == null)
             {
+                TempData["error"] = "Product Not Found! Couldn't delete";
                 return RedirectToAction("Detail", "Product", new { Id = Id });
             }
 
@@ -183,7 +189,7 @@ namespace BiblioRepo.Web.Controllers
 
             db.Products.Remove(product);
             db.SaveChanges();
-            
+            TempData["success"] = "Product deleted successfully";
             return RedirectToAction("Index", "Product");
         }
 

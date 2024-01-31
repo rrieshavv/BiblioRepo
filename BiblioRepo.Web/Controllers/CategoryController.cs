@@ -37,6 +37,7 @@ namespace BiblioRepo.Web.Controllers
                 if (status is not null)
                 {
                     //category already present
+                    TempData["error"] = "Category already exists.";
                     return RedirectToAction("Create", "Category");
                 }
 
@@ -47,6 +48,7 @@ namespace BiblioRepo.Web.Controllers
 
                 await db.Categories.AddAsync(category);
                 await db.SaveChangesAsync();
+                TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index", "Category");
             }
             return RedirectToAction("Index", "Category");
@@ -69,10 +71,12 @@ namespace BiblioRepo.Web.Controllers
                 var existingCategory = await db.Categories.FirstOrDefaultAsync(c => c.Title.Equals(obj.Title));
                 if (existingCategory is not null)
                 {
+                    TempData["error"] = "Category already exists.";
                     return View(existingCategory);
                 }
                 category.Title = obj.Title;
                 await db.SaveChangesAsync();
+                TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index", "Category");
             }
             return View(obj);
@@ -86,8 +90,10 @@ namespace BiblioRepo.Web.Controllers
             {
                 db.Categories.Remove(category);
                 await db.SaveChangesAsync();
+                TempData["success"] = "Category deleted successfully";
                 return RedirectToAction("Index", "Category");
             }
+            TempData["error"] = "Category not found. Couldnot Delete.";
             return RedirectToAction("Index", "Category");
         }
 
