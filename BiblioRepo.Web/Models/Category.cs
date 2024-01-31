@@ -9,6 +9,7 @@ namespace BiblioRepo.Web.Models
 
         [Required]
         [StringLength(30)]
+        [Display(Name ="Category title")]
         public string Title { get; set; }
     }
 }

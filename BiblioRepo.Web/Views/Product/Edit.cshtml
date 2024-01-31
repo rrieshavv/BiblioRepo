@@ -1,0 +1,68 @@
+﻿@model BiblioRepo.Web.Models.Product
+
+
+<div class="text-center mt-3 ">
+    <h1>Product Details</h1>
+</div>
+
+
+<form class="row g-3 mt-3" method="post" enctype="multipart/form-data">
+    <input asp-for="Id" value="@Model.Id" hidden />
+    <div class="col-md-4">
+        <label asp-for="Name" class="form-label"></label>
+        <input class="form-control" asp-for="Name" value="@Model.Name" />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Author" class="form-label"></label>
+        <input class="form-control" asp-for="Author" value="@Model.Author" />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="ISBN" class="form-label"></label>
+        <input class="form-control" asp-for="ISBN" value="@Model.ISBN" />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input class="form-control" asp-for="Quantity" value="@Model.Quantity" />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input class="form-control" asp-for="Price" value="@Model.Price" />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="DiscountRate" class="form-label"></label>
+        <input class="form-control" asp-for="DiscountRate" value="@Model.DiscountRate" />
+    </div>
+    <div class="col-md-3">
+    <label asp-for="CategoryId" class="form-label">Category</label>
+    <select class="form-select" asp-for="CategoryId">
+        <option value="">Select a category</option>
+        @foreach (var category in ViewBag.Categories)
+        {
+                if (category.Id == Model.CategoryId)
+                {
+                    <option value="@category.Id" selected>@category.Title</option>
+                }
+                else
+                {
+                    <option value="@category.Id">@category.Title</option>
+                }
+        }
+    </select>
+</div>
+
+    <div class="col-12">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea class="form-control" asp-for="Description">
+            @Model.Description
+        </textarea>
+    </div>
+    <div class="col-md-9">
+        <label asp-for="ImageUrl" class="form-label"></label><a href="@Model.ImageUrl">@Model.ImageUrl</a>
+        <input class="form-control border-0 shadow" type="file" name="file" asp-for="ImageUrl" value="@Model.ImageUrl" />
+    </div>
+    <div class="col-12">
+
+        <button type="submit" class="btn btn-success">Save changes</button>
+        <a class="btn btn-secondary" asp-controller="Product" asp-action="Index">Cancel</a>
+    </div>
+</form>

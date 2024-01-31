@@ -1,0 +1,47 @@
+﻿@model List<BiblioRepo.Web.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="text-center mt-3 ">
+    <h1>All products</h1>
+</div>
+<!-- Button trigger modal -->
+<a class="btn btn-primary" asp-controller="Product" asp-action="Create">
+    Add new product
+</a>
+
+<table class="table mt-3 ">
+    <thead class="table-primary">
+        <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>ISBN</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Discount rate</th>
+            <th>Discounted Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int sn = 1;
+        }
+        @foreach(var product in Model)
+        {
+            <tr>
+                <td>@sn</td>
+                <td>
+                    <a class="text-decoration-none" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">@product.Name</a>
+                </td>
+                <td>@product.ISBN</td>
+                <td>@product.Quantity</td>
+                <td>Rs. @product.Price</td>
+                <td>@product.DiscountRate%</td>
+                <td>Rs. @product.DiscountedPrice</td>
+            </tr>
+            sn++;
+        }
+    </tbody>
+</table>

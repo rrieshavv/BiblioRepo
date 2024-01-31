@@ -1,0 +1,57 @@
+﻿@model BiblioRepo.Web.Models.ViewModels.ProductDetailViewModel
+
+<div class="text-center mt-3 ">
+    <h1>Product Details</h1>
+</div>
+
+
+<form class="row g-3 mt-3" method="post">
+    <div class="col-md-4">
+        <label asp-for="Product.Name" class="form-label"></label>
+        <input  class="form-control" asp-for="Product.Name" value="@Model.Product.Name" disabled/>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Product.Author" class="form-label"></label>
+        <input class="form-control" asp-for="Product.Author" value="@Model.Product.Author" disabled />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Product.ISBN" class="form-label"></label>
+        <input  class="form-control" asp-for="Product.ISBN" value="@Model.Product.ISBN" disabled />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Product.Quantity" class="form-label"></label>
+        <input class="form-control" asp-for="Product.Quantity" value="@Model.Product.Quantity" disabled />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Product.Price" class="form-label"></label>
+        <input class="form-control" asp-for="Product.Price" value="@Model.Product.Price" disabled />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Product.DiscountRate" class="form-label"></label>
+        <input class="form-control" asp-for="Product.DiscountRate" value="@Model.Product.DiscountRate" disabled />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Product.DiscountedPrice" class="form-label"></label>
+        <input class="form-control" asp-for="Product.DiscountedPrice" value="@Model.Product.DiscountedPrice" disabled />
+    </div>
+    <div class="col-12">
+        <label asp-for="Product.Description" class="form-label"></label>
+        <textarea class="form-control" asp-for="Product.Description" disabled>
+            @Model.Product.Description
+        </textarea>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Category.Title" class="form-label"></label>
+        <input class="form-control" asp-for="Category.Title" value="@Model.Category.Title" disabled />
+    </div>
+    <div class="col-md-9">
+        <label asp-for="Product.ImageUrl" class="form-label"></label> <br />
+        <img src="@Model.Product.ImageUrl" width="200" height="200" />
+    </div>
+
+    <div class="col-12">
+        <a class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-Id="@Model.Product.Id">Edit product</a>
+        <button class="btn btn-danger" type="submit" asp-controller="Product" asp-action="Delete" asp-route-Id="@Model.Product.Id">Delete product</button>
+        <a class="btn btn-secondary" asp-controller="Product" asp-action="Index">Back</a>
+    </div>
+</form>
