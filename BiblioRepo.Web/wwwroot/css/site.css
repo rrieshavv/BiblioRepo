@@ -20,3 +20,31 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*product details*/
+.discount-badge {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    animation: bounceBadge 4s linear infinite;
+}
+
+    .discount-badge span {
+        background-color: #ff6347;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 15px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+    }
+
+@keyframes bounceBadge {
+    0%, 100% {
+        top: 10%;
+    }
+
+    50% {
+        top: 20%;
+    }
+}
+

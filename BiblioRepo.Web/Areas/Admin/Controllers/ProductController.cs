@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 
-namespace BiblioRepo.Web.Controllers
+namespace BiblioRepo.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+
     public class ProductController : Controller
     {
         private readonly AppDbContext db;
@@ -101,7 +103,7 @@ namespace BiblioRepo.Web.Controllers
                 await db.Products.AddAsync(product);
                 await db.SaveChangesAsync();
                 TempData["success"] = "Product created successfully";
-                return RedirectToAction("Detail", "Product", new { Id = obj.Id });
+                return RedirectToAction("Detail", "Product", new { Id = product.Id });
             }
             TempData["error"] = "Can't process image. Try again.";
             return View(obj);
