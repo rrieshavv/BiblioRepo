@@ -1,0 +1,59 @@
+﻿@model BiblioRepo.Web.Models.ViewModels.ProductDetailViewModel
+
+@section PageStyle{
+    <style>
+        .category {
+            background-color: orange;
+            max-width: fit-content;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .add-cart * {
+            width: 200px;
+            margin: 5px 0px;
+        }
+        
+    </style>
+}
+
+<div class="discount-badge">
+    <span>@Model.Product.DiscountRate% off</span>
+</div>
+
+<form method="post">
+    <div class="text-center bg-primary text-white py-2 mt-3">
+        <h1>@Model.Product.Name</h1>
+        <h6 style="color:bisque">@Model.Product.Author</h6>
+    </div>
+    <div class="float-end">
+        <a class="btn btn-primary my-3 " asp-area="Customer" asp-controller="Home" asp-action="Index">Back to home</a>
+        <a class="btn btn-primary" asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-Id="@Model.Product.Id">Edit product</a>
+        <button class="btn btn-danger" type="submit" asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@Model.Product.Id">Delete product</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Product" asp-action="Index">Back</a>
+    </div>
+    <div class="row align-items-start">
+        <div class="col">
+            <img src="@Model.Product.ImageUrl" height="400" class="float-end mt-2 rounded">
+        </div>
+        <div class="col">
+            <p class="category">@Model.Category.Title</p>
+            <p><b>ISBN:</b> @Model.Product.ISBN </p>
+            <p><b>Price: </b> <strike class="text-danger fw-bold fs-3">Rs. @Model.Product.Price</strike></p>
+            <p class="fs-5"><b>Buy Now At: </b> <span class="text-success fw-bold fs-3"> Rs. @Model.Product.DiscountedPrice</span></p>
+            <div class="add-cart mt-5">
+                <hr>
+                <label class="form-label ">Quantity</label>
+                <input type="number" class="form-control" value="1" min="1" max="100">
+                <button class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h3>Description</h3>
+        <p>@Model.Product.Description</p>
+    </div>
+</form>
+
+

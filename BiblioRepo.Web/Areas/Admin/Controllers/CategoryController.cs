@@ -3,8 +3,9 @@ using BiblioRepo.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BiblioRepo.Web.Controllers
+namespace BiblioRepo.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext db;
