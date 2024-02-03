@@ -30,29 +30,6 @@ namespace BiblioRepo.Web.Areas.Admin.Controllers
             return View(products);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Detail(int Id)
-        {
-            var product = await db.Products.SingleOrDefaultAsync(x => x.Id == Id);
-            if(product is not null)
-            {
-                var category = await db.Categories.SingleOrDefaultAsync(c => c.Id == product.CategoryId);
-
-                if(category == null)
-                {
-                    return RedirectToAction("Index", "Product");
-                }
-
-                var detail = new ProductDetailViewModel
-                {
-                    Category = category,
-                    Product = product
-                };
-                return View(detail);
-            }
-            TempData["error"] = "Product not found!";
-            return RedirectToAction("Index", "Product");
-        }
 
         [HttpGet]
         public async Task<IActionResult> Create()
@@ -105,7 +82,7 @@ namespace BiblioRepo.Web.Areas.Admin.Controllers
                 await db.Products.AddAsync(product);
                 await db.SaveChangesAsync();
                 TempData["success"] = "Product created successfully";
-                return RedirectToAction("Detail", "Product", new { Id = product.Id });
+                return RedirectToAction("Detail", "Home", new { Id = product.Id, area = "Customer" });
             }
             TempData["error"] = "Can't process image. Try again.";
             return View(obj);
@@ -161,7 +138,7 @@ namespace BiblioRepo.Web.Areas.Admin.Controllers
                 }
                 await db.SaveChangesAsync();
                 TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Detail","Product", new { Id = obj.Id });
+                return RedirectToAction("Detail","Home", new { Id = obj.Id, area = "Customer" });
             }
             TempData["error"] = "Product not found.";
             return View(obj);

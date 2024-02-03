@@ -29,9 +29,11 @@
     </div>
     <div class="float-end">
         <a class="btn btn-primary my-3 " asp-area="Customer" asp-controller="Home" asp-action="Index">Back to home</a>
+        @if(User.IsInRole(SD.Role_Admin))
+        {
         <a class="btn btn-primary" asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-Id="@Model.Product.Id">Edit product</a>
         <button class="btn btn-danger" type="submit" asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@Model.Product.Id">Delete product</button>
-        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Product" asp-action="Index">Back</a>
+        }
     </div>
     <div class="row align-items-start">
         <div class="col">
