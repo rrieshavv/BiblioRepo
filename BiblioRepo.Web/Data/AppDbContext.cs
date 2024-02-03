@@ -1,9 +1,11 @@
 ﻿using BiblioRepo.Web.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BiblioRepo.Web.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext: IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
@@ -12,6 +14,8 @@ namespace BiblioRepo.Web.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; } 
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         /// <summary>
         ///     The function below is for seeding data to the models

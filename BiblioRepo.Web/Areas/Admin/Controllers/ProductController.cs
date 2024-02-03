@@ -1,6 +1,8 @@
 ﻿using BiblioRepo.Web.Data;
 using BiblioRepo.Web.Models;
 using BiblioRepo.Web.Models.ViewModels;
+using BiblioRepo.Web.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace BiblioRepo.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly AppDbContext db;

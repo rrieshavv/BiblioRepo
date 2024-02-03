@@ -1,11 +1,14 @@
 ﻿using BiblioRepo.Web.Data;
 using BiblioRepo.Web.Models;
+using BiblioRepo.Web.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BiblioRepo.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly AppDbContext db;
