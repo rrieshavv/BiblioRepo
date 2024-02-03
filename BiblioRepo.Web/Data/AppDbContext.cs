@@ -15,6 +15,8 @@ namespace BiblioRepo.Web.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; } 
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
         /// <summary>
         ///     The function below is for seeding data to the models
         /// </summary>
